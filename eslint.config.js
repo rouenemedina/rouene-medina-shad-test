@@ -3,6 +3,9 @@ import globals from 'globals'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import tailwindcss from 'eslint-plugin-tailwindcss';
+import next from "eslint-plugin-next";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 
 export default [
   { ignores: ['dist'] },
@@ -22,6 +25,9 @@ export default [
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      tailwindcss,
+      next,
+      "jsx-a11y": jsxA11y
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -33,6 +39,16 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      "tailwindcss/no-custom-classname": "off", // Allow custom Tailwind class names
+      "react-hooks/rules-of-hooks": "error", // Enforce React Hooks rules
+      "react-hooks/exhaustive-deps": "warn", // Warn about missing dependencies in useEffect
+      "jsx-a11y/alt-text": "warn", // Accessibility: Ensure alt text is used
+      "jsx-a11y/anchor-is-valid": "warn", // Ensure valid links
     },
   },
+  next.configs.recommended, // Next.js recommended rules
+  react.configs.recommended, // React best practices
+  reactHooks.configs.recommended, // React Hooks rules
+  jsxA11y.configs.recommended, // Accessibility rules
+  tailwindcss.configs.recommended, // Tailwind recommended rules
 ]
